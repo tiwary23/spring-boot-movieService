@@ -31,7 +31,7 @@ public class MovieController {
     }
 
     @GetMapping("movie")
-    public ResponseEntity<?> getAllMovie(@RequestBody Movie movie){
+    public ResponseEntity<?> getAllMovie(){
         ResponseEntity responseEntity;
         try{
             responseEntity=new ResponseEntity<List<Movie>>(movieService.getAllMovies(),HttpStatus.OK);
@@ -64,4 +64,17 @@ public class MovieController {
 
         return responseEntity;
     }
+
+    @GetMapping("getmovie")
+    public ResponseEntity<?> getMovieByName(@RequestBody String movieName){
+        ResponseEntity responseEntity;
+        try{
+            responseEntity=new ResponseEntity<Movie>(movieService.getMovieByName(movieName),HttpStatus.OK);
+        }catch(Exception e){
+            responseEntity= new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
+    }
+
+
 }

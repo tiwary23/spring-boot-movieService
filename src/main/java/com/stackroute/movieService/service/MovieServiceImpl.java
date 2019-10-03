@@ -43,4 +43,9 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.deleteById(movieId);
         return "Deleted";
     }
+
+    @Override
+    public Movie getMovieByName(String movieName) {
+        return movieRepository.movieByName(movieName);
+    }
 }

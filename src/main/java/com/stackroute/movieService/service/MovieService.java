@@ -15,4 +15,6 @@ public interface MovieService {
 
     public String deleteMovie(int movieId);
 
+    public Movie getMovieByName(String movieName);
+
 }
