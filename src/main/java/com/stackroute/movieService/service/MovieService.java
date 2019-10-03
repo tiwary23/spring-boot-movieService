@@ -1,12 +1,13 @@
 package com.stackroute.movieService.service;
 
 import com.stackroute.movieService.domain.Movie;
+import com.stackroute.movieService.exception.MovieAlreadyExistsException;
 
 import java.util.List;
 
 public interface MovieService {
 
-    public Movie saveMovie(Movie movie);
+    public Movie saveMovie(Movie movie) /*throws MovieAlreadyExistsException*/;
 
     public List<Movie> getAllMovies();
 

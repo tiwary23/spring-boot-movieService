@@ -1,6 +1,7 @@
 package com.stackroute.movieService.controller;
 
 import com.stackroute.movieService.domain.Movie;
+import com.stackroute.movieService.exception.MovieAlreadyExistsException;
 import com.stackroute.movieService.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

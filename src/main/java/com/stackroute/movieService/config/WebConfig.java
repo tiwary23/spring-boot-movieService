@@ -11,10 +11,10 @@ import org.h2.server.web.WebServlet;
 @Configuration
 public class WebConfig {
 
-    @Bean
+    /*@Bean
     ServletRegistrationBean h2Database(){
         ServletRegistrationBean registrationBean=new ServletRegistrationBean(new WebServlet());
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
-    }
+    }*/
 }
