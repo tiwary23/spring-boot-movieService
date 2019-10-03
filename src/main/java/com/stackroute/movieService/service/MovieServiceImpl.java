@@ -1,7 +1,9 @@
 package com.stackroute.movieService.service;
 
 import com.stackroute.movieService.domain.Movie;
-import com.stackroute.movieService.exception.MovieAlreadyExistsException;
+import com.stackroute.movieService.exceptions.DataBaseNotFoundException;
+import com.stackroute.movieService.exceptions.MovieAlreadyExistsException;
+import com.stackroute.movieService.exceptions.MovieNotFoundException;
 import com.stackroute.movieService.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,32 +22,45 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie saveMovie(Movie movie) /*throws MovieAlreadyExistsException*/ {
-        /*if(movieRepository.existsById(movie.getMovieId())){
-            throw new MovieAlreadyExistsException("movie already exists");
-        }*/
+    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
+        if(movieRepository.existsById(movie.getMovieId())){
+            throw new MovieAlreadyExistsException("Movie Already Exists");
+        }
         Movie savedMovie= movieRepository.save(movie);
         return savedMovie;
     }
 
     @Override
-    public List<Movie> getAllMovies() {
+    public List<Movie> getAllMovies() throws DataBaseNotFoundException {
+        if(movieRepository.findAll().isEmpty()){
+            throw new DataBaseNotFoundException("Database Not Found");
+        }
         return movieRepository.findAll();
     }
 
     @Override
-    public Movie updateMovie(Movie movie) {
+    public Movie updateMovie(Movie movie) throws MovieNotFoundException{
+        if(movieRepository.save(movie)==null){
+            throw new MovieNotFoundException("Movie Not Found");
+        }
         return movieRepository.save(movie);
     }
 
     @Override
-    public String deleteMovie(int movieId) {
+    public String deleteMovie(int movieId) throws MovieNotFoundException {
+        if(!movieRepository.existsById(movieId)){
+            throw new MovieNotFoundException("Movie Not Found");
+
+        }
         movieRepository.deleteById(movieId);
         return "Deleted";
     }
 
     @Override
-    public Movie getMovieByName(String movieName) {
+    public Movie getMovieByName(String movieName) throws MovieNotFoundException{
+        if(movieRepository.movieByName(movieName)==null){
+            throw new MovieNotFoundException("Movie Not Found");
+        }
         return movieRepository.movieByName(movieName);
     }
 }

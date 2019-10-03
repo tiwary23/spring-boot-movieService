@@ -1,7 +1,7 @@
-package com.stackroute.movieService.exception;
+package com.stackroute.movieService.exceptions;
 
 public class MovieAlreadyExistsException extends Exception {
-   /* private String message;
+    private String message;
 
     public MovieAlreadyExistsException(){
 
@@ -10,5 +10,5 @@ public class MovieAlreadyExistsException extends Exception {
     public MovieAlreadyExistsException(String messsage){
         super(messsage);
         this.message=messsage;
-    }*/
+    }
 }
