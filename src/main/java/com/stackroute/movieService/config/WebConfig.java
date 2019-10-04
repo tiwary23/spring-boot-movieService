@@ -1,3 +1,4 @@
+/*
 package com.stackroute.movieService.config;
 
 
@@ -18,3 +19,4 @@ public class WebConfig {
         return registrationBean;
     }
 }
+*/
