@@ -4,10 +4,15 @@ import com.stackroute.movieService.domain.Movie;
 import com.stackroute.movieService.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
+/*@Configuration
+@PropertySource("classpath:application.properties")*/
 public class DataLoaderImplCmdLine implements CommandLineRunner {
 
     private final Logger logger= LoggerFactory.getLogger(DataLoaderImplCmdLine.class);

@@ -40,7 +40,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie updateMovie(Movie movie) throws MovieNotFoundException{
-        if(movieRepository.save(movie)==null){
+        if(!movieRepository.existsById(movie.getMovieId())){
             throw new MovieNotFoundException();
         }
         return movieRepository.save(movie);
