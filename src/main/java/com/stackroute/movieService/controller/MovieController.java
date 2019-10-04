@@ -26,63 +26,67 @@ public class MovieController {
 
     @PostMapping("movie")
     @ApiOperation(value = "Save movie",response = Iterable.class)
-    public ResponseEntity<?> saveMovie(@RequestBody Movie movie){
+    public ResponseEntity<?> saveMovie(@RequestBody Movie movie) throws MovieAlreadyExistsException{
         ResponseEntity responseEntity;
-        try{
+        /*try{
            responseEntity=new ResponseEntity<Movie>(movieService.saveMovie(movie), HttpStatus.CREATED);
         }catch (MovieAlreadyExistsException e){
             responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-        }
+        }*/
+        responseEntity=new ResponseEntity<Movie>(movieService.saveMovie(movie), HttpStatus.CREATED);
         return responseEntity;
     }
 
     @GetMapping("movie")
     @ApiOperation(value = "get all movie",response = Iterable.class)
-    public ResponseEntity<?> getAllMovie(){
+    public ResponseEntity<?> getAllMovie() throws DataBaseNotFoundException{
         ResponseEntity responseEntity;
-        try{
+        /*try{
             responseEntity=new ResponseEntity<List<Movie>>(movieService.getAllMovies(),HttpStatus.OK);
         }catch(DataBaseNotFoundException e){
             responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-        }
+        }*/
+        responseEntity=new ResponseEntity<List<Movie>>(movieService.getAllMovies(),HttpStatus.OK);
         return responseEntity;
     }
 
     @PutMapping("movie")
     @ApiOperation(value = "update movie",response = Iterable.class)
-    public ResponseEntity<?> updateMovie(@RequestBody Movie movie){
+    public ResponseEntity<?> updateMovie(@RequestBody Movie movie) throws MovieNotFoundException{
         ResponseEntity responseEntity;
-        try{
+        /*try{
             responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie),HttpStatus.OK);
         }catch (MovieNotFoundException e){
             responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-        }
-        return responseEntity;
+        }*/
+        return responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie),HttpStatus.OK);
     }
 
     @DeleteMapping("movie")
     @ApiOperation(value = "delete movie",response = Iterable.class)
-    public ResponseEntity<?> deleteMovie(@RequestBody int movieId){
+    public ResponseEntity<?> deleteMovie(@RequestBody int movieId)throws MovieNotFoundException{
         ResponseEntity responseEntity;
-        try{
+        /*try{
             movieService.deleteMovie(movieId);
             responseEntity=new ResponseEntity<String>("Deleted",HttpStatus.OK);
         }catch (MovieNotFoundException e){
             responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-        }
-
+        }*/
+        movieService.deleteMovie(movieId);
+        responseEntity=new ResponseEntity<String>("Deleted",HttpStatus.OK);
         return responseEntity;
     }
 
     @GetMapping("getmovie")
     @ApiOperation(value = "get movie by name",response = Iterable.class)
-    public ResponseEntity<?> getMovieByName(@RequestBody String movieName){
+    public ResponseEntity<?> getMovieByName(@RequestBody String movieName) throws MovieNotFoundException{
         ResponseEntity responseEntity;
-        try{
+        /*try{
             responseEntity=new ResponseEntity<Movie>(movieService.getMovieByName(movieName),HttpStatus.OK);
         }catch(MovieNotFoundException e){
             responseEntity= new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-        }
+        }*/
+        responseEntity=new ResponseEntity<Movie>(movieService.getMovieByName(movieName),HttpStatus.OK);
         return responseEntity;
     }
 

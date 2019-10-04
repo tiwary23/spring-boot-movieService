@@ -22,18 +22,18 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
+    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException{
         if(movieRepository.existsById(movie.getMovieId())){
-            throw new MovieAlreadyExistsException("Movie Already Exists");
+            throw new MovieAlreadyExistsException();
         }
         Movie savedMovie= movieRepository.save(movie);
         return savedMovie;
     }
 
     @Override
-    public List<Movie> getAllMovies() throws DataBaseNotFoundException {
+    public List<Movie> getAllMovies() throws DataBaseNotFoundException{
         if(movieRepository.findAll().isEmpty()){
-            throw new DataBaseNotFoundException("Database Not Found");
+            throw new DataBaseNotFoundException();
         }
         return movieRepository.findAll();
     }
@@ -41,7 +41,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie updateMovie(Movie movie) throws MovieNotFoundException{
         if(movieRepository.save(movie)==null){
-            throw new MovieNotFoundException("Movie Not Found");
+            throw new MovieNotFoundException();
         }
         return movieRepository.save(movie);
     }
@@ -49,7 +49,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public String deleteMovie(int movieId) throws MovieNotFoundException {
         if(!movieRepository.existsById(movieId)){
-            throw new MovieNotFoundException("Movie Not Found");
+            throw new MovieNotFoundException();
 
         }
         movieRepository.deleteById(movieId);
@@ -57,9 +57,9 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getMovieByName(String movieName) throws MovieNotFoundException{
+    public Movie getMovieByName(String movieName) throws MovieNotFoundException {
         if(movieRepository.movieByName(movieName)==null){
-            throw new MovieNotFoundException("Movie Not Found");
+            throw new MovieNotFoundException();
         }
         return movieRepository.movieByName(movieName);
     }
