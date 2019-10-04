@@ -7,6 +7,8 @@ import com.stackroute.movieService.exceptions.MovieNotFoundException;
 import com.stackroute.movieService.service.MovieService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +19,9 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @Api(value = "movie list",description = "Crud Operations")
 public class MovieController {
-
-    MovieService movieService;
+    @Autowired
+    @Qualifier("movieDummyService")
+    private MovieService movieService;
 
     public MovieController(MovieService movieService){
         this.movieService=movieService;
