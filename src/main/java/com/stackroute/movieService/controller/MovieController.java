@@ -19,10 +19,10 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @Api(value = "movie list",description = "Crud Operations")
 public class MovieController {
-    @Autowired
-    @Qualifier("movieDummyService")
+
     private MovieService movieService;
 
+    @Autowired
     public MovieController(MovieService movieService){
         this.movieService=movieService;
     }
