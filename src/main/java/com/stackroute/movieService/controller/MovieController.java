@@ -22,7 +22,7 @@ public class MovieController {
 
     private MovieService movieService;
 
-    @Autowired
+
     public MovieController(MovieService movieService){
         this.movieService=movieService;
     }
@@ -55,7 +55,7 @@ public class MovieController {
     public ResponseEntity<?> deleteMovie(@RequestBody int movieId)throws MovieNotFoundException{
         ResponseEntity responseEntity;
         movieService.deleteMovie(movieId);
-        responseEntity=new ResponseEntity<String>("Deleted",HttpStatus.OK);
+        responseEntity=new ResponseEntity<String>("Deleted the movie",HttpStatus.OK);
         return responseEntity;
     }
 

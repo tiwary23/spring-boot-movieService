@@ -3,6 +3,7 @@ package com.stackroute.movieService.dataSeeder;
 
 import com.stackroute.movieService.domain.Movie;
 import com.stackroute.movieService.exceptions.MovieAlreadyExistsException;
+import com.stackroute.movieService.repository.MovieRepository;
 import com.stackroute.movieService.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,22 +15,18 @@ import org.springframework.stereotype.Component;
 public class DataLoaderUsingEventListener implements ApplicationListener<ContextRefreshedEvent> {
 
     private final Logger logger= LoggerFactory.getLogger(DataLoaderImplCmdLine.class);
-    private MovieService movieService;
+    private MovieRepository movieRepository;
     private Movie movie=new Movie();
 
-    public DataLoaderUsingEventListener(MovieService movieService){
-        this.movieService=movieService;
+    public DataLoaderUsingEventListener(MovieRepository movieRepository){
+        this.movieRepository=movieRepository;
     }
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         movie.setMovieId(2);
         movie.setMovieName("deepak");
         movie.setReleaseDate("23/10/1996");
-        try {
-            movieService.saveMovie(movie);
-        } catch (MovieAlreadyExistsException e) {
-            e.printStackTrace();
-        }
+        movieRepository.save(movie);
 
     }
 }
