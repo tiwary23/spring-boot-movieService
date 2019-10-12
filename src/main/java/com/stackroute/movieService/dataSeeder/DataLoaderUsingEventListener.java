@@ -2,9 +2,7 @@ package com.stackroute.movieService.dataSeeder;
 
 
 import com.stackroute.movieService.domain.Movie;
-import com.stackroute.movieService.exceptions.MovieAlreadyExistsException;
 import com.stackroute.movieService.repository.MovieRepository;
-import com.stackroute.movieService.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -23,6 +21,7 @@ public class DataLoaderUsingEventListener implements ApplicationListener<Context
     }
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        logger.info("loading from event listener");
         movie.setMovieId(2);
         movie.setMovieName("deepak");
         movie.setReleaseDate("23/10/1996");

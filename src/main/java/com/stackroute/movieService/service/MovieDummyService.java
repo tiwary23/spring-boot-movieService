@@ -45,18 +45,20 @@ public class MovieDummyService implements MovieService {
         if(!movieRepository.existsById(movie.getMovieId())){
             throw new MovieNotFoundException();
         }
+        System.out.println("this is from dummy");
         return movieRepository.save(movie);
     }
 
     @Override
-    public String deleteMovie(int movieId) throws MovieNotFoundException {
+    public Movie deleteMovie(int movieId) throws MovieNotFoundException {
         if(!movieRepository.existsById(movieId)){
             throw new MovieNotFoundException();
 
         }
-        movieRepository.deleteById(movieId);
         System.out.println("this is from Dummy");
-        return "Deleted";
+        Movie deletedMovie=movieRepository.findById(movieId).get();
+        movieRepository.deleteById(movieId);
+        return deletedMovie;
     }
 
     @Override
