@@ -1,3 +1,4 @@
 # spring-boot-movieService
 
-12. Swap in-memory H2 database with MySQL.
+13. Create two additional properties file application-dev.properties that contains configuration for
+H2 and application-prod.properties that contains configurations for MySQL.
