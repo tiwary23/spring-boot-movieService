@@ -1,3 +1,3 @@
 # spring-boot-movieService
 
-12. Swap in-memory H2 database with MySQL.
+Use spring developer tool and verify that changes are getting reflected without the need of restarting the server
